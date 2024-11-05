@@ -27,19 +27,17 @@ Pedestrian and bicyclist safety across the U.S. has declined significantly over 
 ## Example 1
 
 ```{r, out.width="100%", echo = FALSE}
-knitr::include_graphics("C:/Repos/ProjectProposal/Example1.png")
+knitr::include_graphics("C:/Repos/final-project-andreaharder/IMG/Example1.png")
 ```
 
 This graphic shows pedestrian fatalities from 2019 to 2023 across the United States and is helpful in understanding how trends have changed overtime. Pedestrian fatalities have increased by 14% since 2019. A similar graphic could be made to assess fatal crashes involving pedestrians and cyclists in NYS overtime.
 
 [Example 1 Link](https://www.ghsa.org/resources/Pedestrians24)
 
-## Example 2
-
+##Example 2
 ```{r, out.width="100%", echo = FALSE}
-knitr::include_graphics("C:/Repos/ProjectProposal/Choropleth.jpg")
+knitr::include_graphics("C:/Repos/final-project-andreaharder/IMG/Example2.jpg")
 ```
-
 This choropleth map can be used to communicate the geospatial distribution of pedestrian fatalities across the United States. States with darker colors have a higher rate of pedestrian fatalities per 100,000 people compared to states with lighter colors. For example, New Mexico has the highest death rate at 4.68 and Nebraska has the lowest death rate at 0.71. This map could be reproduced to show the geospatial distribution of fatal crashes in NYS by county.
 
 [Example 2 Link](https://www.ghsa.org/resources/Pedestrians24)
@@ -47,7 +45,7 @@ This choropleth map can be used to communicate the geospatial distribution of pe
 ## Example 3
 
 ```{r, out.width="100%", echo = FALSE}
-knitr::include_graphics("C:/Repos/ProjectProposal/Example3.png")
+knitr::include_graphics("C:/Repos/final-project-andreaharder/IMG/Example3.png")
 ```
 
 The graphic above shows the most common causes of fatal accidents in 2017. Speeding is the most common cause of accidents involving motorists followed by other factors, driving under the influence, and failure to keep in the proper lane. Similar graphics could be used to communicate the most common causes of accidents involving pedestrians and cyclists in NYS.
@@ -57,7 +55,7 @@ The graphic above shows the most common causes of fatal accidents in 2017. Speed
 ## Example 4
 
 ```{r, out.width="100%", echo = FALSE}
-knitr::include_graphics("C:/Repos/ProjectProposal/Example4.jpg")
+knitr::include_graphics("C:/Repos/final-project-andreaharder/IMG/Example4.jpg")
 ```
 
 This picture shows a dot density map of highway crashes in the U.S. by location. Dot densities are generally higher along the east coast where population densities are higher. A similar map could be made for NYS to show the geospatial distribution of fatal crashes.
@@ -67,7 +65,7 @@ This picture shows a dot density map of highway crashes in the U.S. by location.
 ## Example 5
 
 ```{r, out.width="100%", echo = FALSE}
-knitr::include_graphics("C:/Repos/ProjectProposal/Example5.png")
+knitr::include_graphics("C:/Repos/final-project-andreaharder/IMG/Example5.png")
 ```
 
 The graphic pictured above shows the 20 most dangerous cities for drivers in California. This graphic could be reproduced to show the highest ranking municipalities in NYS when it comes to fatal crashes involving both pedestrians and cyclists.
