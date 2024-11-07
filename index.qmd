@@ -1,6 +1,6 @@
 ---
 title: "Andrea's Final Project Template"
-author: Your name here
+author: Andrea Harder
 subtitle: Subtitle here if desired
 date: today
 date-format: long
