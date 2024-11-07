@@ -3,18 +3,13 @@ title: "Andrea's Final Project Template"
 author: Andrea Harder
 subtitle: Subtitle here if desired
 date: 11/7
-date-format: long
 ---
 
 # Introduction
 
-\[\~ 200 words\]
-
 Clearly stated background and questions / hypotheses / problems being addressed. Sets up the analysis in an interesting and compelling way. Include figures if you like.
 
 # Materials and methods
-
-\[\~ 200 words\]
 
 Narrative: Clear narrative description of the data sources and methods. Includes data from at least two sources that were integrated / merged in R.
 
@@ -81,8 +76,6 @@ Add any additional processing steps here.
 
 # Results
 
-\[\~200 words\]
-
 Tables and figures (maps and other graphics) are carefully planned to convey the results of your analysis. Intense exploration and evidence of many trials and failures. The author looked at the data in many different ways before coming to the final presentation of the data.
 
 Show tables, plots, etc. and describe them.
@@ -110,8 +103,6 @@ dygraph(nhtemp, main = "New Haven Temperatures") |>
 ```
 
 # Conclusions
-
-\[\~200 words\]
 
 Clear summary adequately describing the results and putting them in context. Discussion of further questions and ways to continue investigation.
 
