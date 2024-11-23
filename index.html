@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andrea Harder">
-<meta name="dcterms.date" content="2001-11-07">
+<meta name="dcterms.date" content="2001-11-15">
 
-<title>Andrea’s Final Project Template – GEO511_FinalProject</title>
+<title>Pedestrian Fatalities in NYS – GEO511_FinalProject</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -102,25 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
-<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
-<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="site_libs/leaflet-binding-2.2.2/leaflet.js"></script>
-<link href="site_libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet">
-<script src="site_libs/dygraphs-1.1.1/dygraph-combined.js"></script>
-<script src="site_libs/dygraphs-1.1.1/shapes.js"></script>
-<script src="site_libs/moment-2.8.4/moment.js"></script>
-<script src="site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
-<script src="site_libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
-<script src="site_libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
 
 
 </head>
@@ -167,8 +148,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Andrea’s Final Project Template</h1>
-<p class="subtitle lead">Subtitle here if desired</p>
+<h1 class="title">Pedestrian Fatalities in NYS</h1>
+<p class="subtitle lead">2019-2023</p>
 </div>
 
 
@@ -185,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 7, 2001</p>
+      <p class="date">November 15, 2001</p>
     </div>
   </div>
   
@@ -199,12 +180,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>background and questions / hypotheses / problems being addressed. Sets up the analysis in an interesting and compelling way. Include figures if you like.</p>
+<p>Pedestrian safety across the U.S. has declined significantly over the past several decades. According to the U.S. Department of Transportation, 7,388 pedestrians were killed in motor vehicle crashes in 2021 which represents a 12.5 percent increase from 2020 and a 40 year high (U.S. DOT, 2023).</p>
+</section>
+<section id="research-questions" class="level1">
+<h1>Research Questions</h1>
+<ol type="1">
+<li>Are national trends in fatal accidents involving pedestrians and cyclists present at the state level?</li>
+<li>What is the geospatial distribution of crashes involving pedestrians and bicyclists across NYS by county?</li>
+<li>What are the most common causes of pedestrian and cyclist fatalities in NYS?</li>
+</ol>
 </section>
 <section id="materials-and-methods" class="level1">
 <h1>Materials and methods</h1>
 <p>Narrative: Clear narrative description of the data sources and methods. Includes data from at least two sources that were integrated / merged in R.</p>
-<p>Code: The code associated with the project is well organized and easy to follow. Demonstrates mastery of R graphics and functions.</p>
 <p>Data: The underlying data are publicly accessible via the web and downloaded/accessed within the Rmd script. If you want to use your own data, you must make it available on a website (e.g.&nbsp;Figshare) so that others are able to re-run your code.</p>
 <p>You can do bullets like this:</p>
 <ul>
@@ -218,169 +206,272 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The second most important thing</li>
 <li>The third most important thing</li>
 </ol>
-<p>See <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a> for all the amazing things you can do.</p>
-<p>Here’s my first code chunk.</p>
+</section>
+<section id="download-and-clean-all-required-data" class="level1">
+<h1>Download and clean all required data</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="dv">3</span><span class="sc">+</span><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"tidyverse"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"dplyr"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)){</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"ggplot2"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)){</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"sf"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)){</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"sf"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Downloading packages -------------------------------------------------------
+- Downloading sf from CRAN ...                  OK [3.6 Mb in 0.38s]
+- Downloading classInt from CRAN ...            OK [487.3 Kb in 0.35s]
+- Downloading e1071 from CRAN ...               OK [582.2 Kb in 0.35s]
+- Downloading proxy from CRAN ...               OK [171.5 Kb in 0.34s]
+- Downloading s2 from CRAN ...                  OK [2.1 Mb in 0.35s]
+- Downloading wk from CRAN ...                  OK [1.7 Mb in 0.37s]
+- Downloading units from CRAN ...               OK [354.5 Kb in 0.35s]
+Successfully downloaded 7 packages in 3.5 seconds.
+
+The following package(s) will be installed:
+- classInt [0.4-10]
+- e1071    [1.7-16]
+- proxy    [0.4-27]
+- s2       [1.1.7]
+- sf       [1.0-19]
+- units    [0.8-5]
+- wk       [0.9.4]
+These packages will be installed into "~/work/final-project-andreaharder/final-project-andreaharder/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu".
+
+# Installing packages --------------------------------------------------------
+- Installing proxy ...                          OK [installed binary and cached in 0.21s]
+- Installing e1071 ...                          OK [installed binary and cached in 0.22s]
+- Installing classInt ...                       OK [installed binary and cached in 0.23s]
+- Installing wk ...                             OK [installed binary and cached in 0.25s]
+- Installing s2 ...                             OK [installed binary and cached in 0.35s]
+- Installing units ...                          OK [installed binary and cached in 0.32s]
+- Installing sf ...                             OK [installed binary and cached in 0.59s]
+Successfully installed 7 packages in 2.4 seconds.</code></pre>
 </div>
-<p>Refer to output in your narrative like this: x=7 .</p>
-<p>Load any required packages in a code chunk (you may need to install some packages):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmlwidgets)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(widgetframe)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">widgetframe_widgets_dir =</span> <span class="st">'widgets'</span> ) </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">cache=</span><span class="cn">TRUE</span>)  <span class="co"># cache the results for quick compiling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"knitr"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)){</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"knitr"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#library(tidyverse)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#library(dplyr)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#library(ggplot2)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#library(sf)</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#library(knitr)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Motor vehicle crashes case information: Filtered by year, crash descriptor (i.e. fatal accident), and event descriptor (i.e. pedestrian collision with)</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>data2019ped <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://data.ny.gov/resource/e8ky-4vqe.csv?$query=SELECT%0A%20%20%60year%60%2C%0A%20%20%60accident_descriptor%60%2C%0A%20%20%60time%60%2C%0A%20%20%60date%60%2C%0A%20%20%60day_of_week%60%2C%0A%20%20%60police_report%60%2C%0A%20%20%60lighting_conditions%60%2C%0A%20%20%60municipality%60%2C%0A%20%20%60collision_type_descriptor%60%2C%0A%20%20%60county_name%60%2C%0A%20%20%60road_descriptor%60%2C%0A%20%20%60weather_conditions%60%2C%0A%20%20%60traffic_control_device%60%2C%0A%20%20%60road_surface_conditions%60%2C%0A%20%20%60dot_reference_marker_location%60%2C%0A%20%20%60pedestrian_bicyclist_action%60%2C%0A%20%20%60event_descriptor%60%2C%0A%20%20%60number_of_vehicles_involved%60%0AWHERE%0A%20%20(%60year%60%20IN%20(%222019%22))%0A%20%20AND%20(caseless_one_of(%60accident_descriptor%60%2C%20%22Fatal%20Accident%22)%0A%20%20%20%20%20%20%20%20%20AND%20caseless_one_of(%0A%20%20%20%20%20%20%20%20%20%20%20%60event_descriptor%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%22Pedestrian%2C%20Collision%20With%22%0A%20%20%20%20%20%20%20%20%20))"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>data2020ped <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://data.ny.gov/resource/e8ky-4vqe.csv?$query=SELECT%0A%20%20%60year%60%2C%0A%20%20%60accident_descriptor%60%2C%0A%20%20%60time%60%2C%0A%20%20%60date%60%2C%0A%20%20%60day_of_week%60%2C%0A%20%20%60police_report%60%2C%0A%20%20%60lighting_conditions%60%2C%0A%20%20%60municipality%60%2C%0A%20%20%60collision_type_descriptor%60%2C%0A%20%20%60county_name%60%2C%0A%20%20%60road_descriptor%60%2C%0A%20%20%60weather_conditions%60%2C%0A%20%20%60traffic_control_device%60%2C%0A%20%20%60road_surface_conditions%60%2C%0A%20%20%60dot_reference_marker_location%60%2C%0A%20%20%60pedestrian_bicyclist_action%60%2C%0A%20%20%60event_descriptor%60%2C%0A%20%20%60number_of_vehicles_involved%60%0AWHERE%0A%20%20(%60year%60%20IN%20(%222020%22))%0A%20%20AND%20(caseless_one_of(%60accident_descriptor%60%2C%20%22Fatal%20Accident%22)%0A%20%20%20%20%20%20%20%20%20AND%20caseless_one_of(%0A%20%20%20%20%20%20%20%20%20%20%20%60event_descriptor%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%22Pedestrian%2C%20Collision%20With%22%0A%20%20%20%20%20%20%20%20%20))"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>data2021ped <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://data.ny.gov/resource/e8ky-4vqe.csv?$query=SELECT%0A%20%20%60year%60%2C%0A%20%20%60accident_descriptor%60%2C%0A%20%20%60time%60%2C%0A%20%20%60date%60%2C%0A%20%20%60day_of_week%60%2C%0A%20%20%60police_report%60%2C%0A%20%20%60lighting_conditions%60%2C%0A%20%20%60municipality%60%2C%0A%20%20%60collision_type_descriptor%60%2C%0A%20%20%60county_name%60%2C%0A%20%20%60road_descriptor%60%2C%0A%20%20%60weather_conditions%60%2C%0A%20%20%60traffic_control_device%60%2C%0A%20%20%60road_surface_conditions%60%2C%0A%20%20%60dot_reference_marker_location%60%2C%0A%20%20%60pedestrian_bicyclist_action%60%2C%0A%20%20%60event_descriptor%60%2C%0A%20%20%60number_of_vehicles_involved%60%0AWHERE%0A%20%20(%60year%60%20IN%20(%222021%22))%0A%20%20AND%20(caseless_one_of(%60accident_descriptor%60%2C%20%22Fatal%20Accident%22)%0A%20%20%20%20%20%20%20%20%20AND%20caseless_one_of(%0A%20%20%20%20%20%20%20%20%20%20%20%60event_descriptor%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%22Pedestrian%2C%20Collision%20With%22%0A%20%20%20%20%20%20%20%20%20))"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>data2022ped <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://data.ny.gov/resource/e8ky-4vqe.csv?$query=SELECT%0A%20%20%60year%60%2C%0A%20%20%60accident_descriptor%60%2C%0A%20%20%60time%60%2C%0A%20%20%60date%60%2C%0A%20%20%60day_of_week%60%2C%0A%20%20%60police_report%60%2C%0A%20%20%60lighting_conditions%60%2C%0A%20%20%60municipality%60%2C%0A%20%20%60collision_type_descriptor%60%2C%0A%20%20%60county_name%60%2C%0A%20%20%60road_descriptor%60%2C%0A%20%20%60weather_conditions%60%2C%0A%20%20%60traffic_control_device%60%2C%0A%20%20%60road_surface_conditions%60%2C%0A%20%20%60dot_reference_marker_location%60%2C%0A%20%20%60pedestrian_bicyclist_action%60%2C%0A%20%20%60event_descriptor%60%2C%0A%20%20%60number_of_vehicles_involved%60%0AWHERE%0A%20%20(%60year%60%20IN%20(%222022%22))%0A%20%20AND%20(caseless_one_of(%60accident_descriptor%60%2C%20%22Fatal%20Accident%22)%0A%20%20%20%20%20%20%20%20%20AND%20caseless_one_of(%0A%20%20%20%20%20%20%20%20%20%20%20%60event_descriptor%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%22Pedestrian%2C%20Collision%20With%22%0A%20%20%20%20%20%20%20%20%20))"</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>data2023ped <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://data.ny.gov/resource/e8ky-4vqe.csv?$query=SELECT%0A%20%20%60year%60%2C%0A%20%20%60accident_descriptor%60%2C%0A%20%20%60time%60%2C%0A%20%20%60date%60%2C%0A%20%20%60day_of_week%60%2C%0A%20%20%60police_report%60%2C%0A%20%20%60lighting_conditions%60%2C%0A%20%20%60municipality%60%2C%0A%20%20%60collision_type_descriptor%60%2C%0A%20%20%60county_name%60%2C%0A%20%20%60road_descriptor%60%2C%0A%20%20%60weather_conditions%60%2C%0A%20%20%60traffic_control_device%60%2C%0A%20%20%60road_surface_conditions%60%2C%0A%20%20%60dot_reference_marker_location%60%2C%0A%20%20%60pedestrian_bicyclist_action%60%2C%0A%20%20%60event_descriptor%60%2C%0A%20%20%60number_of_vehicles_involved%60%0AWHERE%0A%20%20(%60year%60%20IN%20(%222023%22))%0A%20%20AND%20(caseless_one_of(%60accident_descriptor%60%2C%20%22Fatal%20Accident%22)%0A%20%20%20%20%20%20%20%20%20AND%20caseless_one_of(%0A%20%20%20%20%20%20%20%20%20%20%20%60event_descriptor%60%2C%0A%20%20%20%20%20%20%20%20%20%20%20%22Pedestrian%2C%20Collision%20With%22%0A%20%20%20%20%20%20%20%20%20))"</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">#Combine the datasets</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>CaseInfo <span class="ot">&lt;-</span> <span class="fu">rbind</span>(data2019ped,data2020ped,data2021ped,data2022ped,data2023ped)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">#Motor vehicle crashes individual information: Filtered by year, role type (i.e. pedestrian), and injury severeity (i.e. killed)</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>Ind2019ped <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://data.ny.gov/resource/ir4y-sesj.csv?$query=SELECT%0A%20%20%60year%60%2C%0A%20%20%60case_individual_id%60%2C%0A%20%20%60case_vehicle_id%60%2C%0A%20%20%60victim_status%60%2C%0A%20%20%60role_type%60%2C%0A%20%20%60seating_position%60%2C%0A%20%20%60ejection%60%2C%0A%20%20%60license_state_code%60%2C%0A%20%20%60gender%60%2C%0A%20%20%60transported_by%60%2C%0A%20%20%60safety_equipment%60%2C%0A%20%20%60injury_descriptor%60%2C%0A%20%20%60injury_location%60%2C%0A%20%20%60injury_severity%60%2C%0A%20%20%60age%60%0AWHERE%0A%20%20(%60year%60%20IN%20(%222019%22))%0A%20%20AND%20(caseless_one_of(%60role_type%60%2C%20%22Pedestrian%22)%0A%20%20%20%20%20%20%20%20%20AND%20caseless_one_of(%60injury_severity%60%2C%20%22Killed%22))"</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>Ind2020ped <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://data.ny.gov/resource/ir4y-sesj.csv?$query=SELECT%0A%20%20%60year%60%2C%0A%20%20%60case_individual_id%60%2C%0A%20%20%60case_vehicle_id%60%2C%0A%20%20%60victim_status%60%2C%0A%20%20%60role_type%60%2C%0A%20%20%60seating_position%60%2C%0A%20%20%60ejection%60%2C%0A%20%20%60license_state_code%60%2C%0A%20%20%60gender%60%2C%0A%20%20%60transported_by%60%2C%0A%20%20%60safety_equipment%60%2C%0A%20%20%60injury_descriptor%60%2C%0A%20%20%60injury_location%60%2C%0A%20%20%60injury_severity%60%2C%0A%20%20%60age%60%0AWHERE%0A%20%20(%60year%60%20IN%20(%222020%22))%0A%20%20AND%20(caseless_one_of(%60role_type%60%2C%20%22Pedestrian%22)%0A%20%20%20%20%20%20%20%20%20AND%20caseless_one_of(%60injury_severity%60%2C%20%22Killed%22))"</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>Ind2021ped <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://data.ny.gov/resource/ir4y-sesj.csv?$query=SELECT%0A%20%20%60year%60%2C%0A%20%20%60case_individual_id%60%2C%0A%20%20%60case_vehicle_id%60%2C%0A%20%20%60victim_status%60%2C%0A%20%20%60role_type%60%2C%0A%20%20%60seating_position%60%2C%0A%20%20%60ejection%60%2C%0A%20%20%60license_state_code%60%2C%0A%20%20%60gender%60%2C%0A%20%20%60transported_by%60%2C%0A%20%20%60safety_equipment%60%2C%0A%20%20%60injury_descriptor%60%2C%0A%20%20%60injury_location%60%2C%0A%20%20%60injury_severity%60%2C%0A%20%20%60age%60%0AWHERE%0A%20%20(%60year%60%20IN%20(%222021%22))%0A%20%20AND%20(caseless_one_of(%60role_type%60%2C%20%22Pedestrian%22)%0A%20%20%20%20%20%20%20%20%20AND%20caseless_one_of(%60injury_severity%60%2C%20%22Killed%22))"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>Ind2022ped <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://data.ny.gov/resource/ir4y-sesj.csv?$query=SELECT%0A%20%20%60year%60%2C%0A%20%20%60case_individual_id%60%2C%0A%20%20%60case_vehicle_id%60%2C%0A%20%20%60victim_status%60%2C%0A%20%20%60role_type%60%2C%0A%20%20%60seating_position%60%2C%0A%20%20%60ejection%60%2C%0A%20%20%60license_state_code%60%2C%0A%20%20%60gender%60%2C%0A%20%20%60transported_by%60%2C%0A%20%20%60safety_equipment%60%2C%0A%20%20%60injury_descriptor%60%2C%0A%20%20%60injury_location%60%2C%0A%20%20%60injury_severity%60%2C%0A%20%20%60age%60%0AWHERE%0A%20%20(%60year%60%20IN%20(%222022%22))%0A%20%20AND%20(caseless_one_of(%60role_type%60%2C%20%22Pedestrian%22)%0A%20%20%20%20%20%20%20%20%20AND%20caseless_one_of(%60injury_severity%60%2C%20%22Killed%22))"</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>Ind2023ped <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://data.ny.gov/resource/ir4y-sesj.csv?$query=SELECT%0A%20%20%60year%60%2C%0A%20%20%60case_individual_id%60%2C%0A%20%20%60case_vehicle_id%60%2C%0A%20%20%60victim_status%60%2C%0A%20%20%60role_type%60%2C%0A%20%20%60seating_position%60%2C%0A%20%20%60ejection%60%2C%0A%20%20%60license_state_code%60%2C%0A%20%20%60gender%60%2C%0A%20%20%60transported_by%60%2C%0A%20%20%60safety_equipment%60%2C%0A%20%20%60injury_descriptor%60%2C%0A%20%20%60injury_location%60%2C%0A%20%20%60injury_severity%60%2C%0A%20%20%60age%60%0AWHERE%0A%20%20(%60year%60%20IN%20(%222023%22))%0A%20%20AND%20(caseless_one_of(%60role_type%60%2C%20%22Pedestrian%22)%0A%20%20%20%20%20%20%20%20%20AND%20caseless_one_of(%60injury_severity%60%2C%20%22Killed%22))"</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co">#Combine the datasets</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>IndividualInfo <span class="ot">&lt;-</span> <span class="fu">rbind</span>(Ind2019ped,Ind2020ped,Ind2021ped,Ind2022ped,Ind2023ped)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co">#Load shapefiles</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot 1: Individual Information Pedestrian Fatalities Overtime</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>YearCount <span class="ot">&lt;-</span> IndividualInfo<span class="sc">%&gt;%</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(year)<span class="sc">%&gt;%</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>())</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">data =</span> YearCount, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y =</span> n))<span class="sc">+</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ggtitle</span>(<span class="st">"Pedestrian Fatalities Overtime"</span>, <span class="at">subtitle =</span> <span class="st">"NYS 2019-2023"</span>)<span class="sc">+</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>), <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))<span class="sc">+</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>)<span class="sc">+</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fatalities"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/data-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<section id="download-and-clean-all-required-data" class="level2">
-<h2 class="anchored" data-anchor-id="download-and-clean-all-required-data">Download and clean all required data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">20</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">runif</span>(n,<span class="sc">-</span><span class="dv">180</span>,<span class="dv">180</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">y=</span><span class="fu">runif</span>(n,<span class="sc">-</span><span class="dv">60</span>,<span class="dv">60</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fu">runif</span>(n, <span class="dv">5</span>, <span class="dv">20</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">category =</span> <span class="fu">factor</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">sample</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                  ),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">value =</span> <span class="fu">rnorm</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="co">#show only 1:n rows</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">2</span>,<span class="at">align=</span><span class="st">"c"</span>)<span class="sc">%&gt;%</span> <span class="co">#make table and round to two digits</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>)) <span class="co">#apply other formatting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top" data-quarto-postprocess="true">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot 2: Case Information Fatalities overtime</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>YearCountCase <span class="ot">&lt;-</span> CaseInfo<span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(year)<span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>())</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">data =</span> YearCountCase, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y =</span> n))<span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Pedestrian Fatalities Overtime"</span>, <span class="at">subtitle =</span> <span class="st">"NYS 2019-2023"</span>)<span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>), <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))<span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>)<span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fatalities"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/data-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot 3: Individual Information Age</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Age <span class="ot">&lt;-</span>IndividualInfo<span class="sc">$</span>age </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(Age, <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/data-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot 4: Case Information Day of Week</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>DayofWeek <span class="ot">&lt;-</span> CaseInfo <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">day_of_week =</span> <span class="fu">factor</span>(day_of_week, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Monday"</span>,<span class="st">"Tuesday"</span>,<span class="st">"Wednesday"</span>,<span class="st">"Thursday"</span>,<span class="st">"Friday"</span>,<span class="st">"Saturday"</span>,<span class="st">"Sunday"</span>),<span class="at">ordered =</span> <span class="cn">TRUE</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(day_of_week)<span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(day_of_week)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(DayofWeek)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">"Count"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> DayofWeek, <span class="fu">aes</span>(<span class="at">x=</span> day_of_week, <span class="at">y=</span> Count))<span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)<span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Pedestrian Fatalities by Day of Week"</span>, <span class="at">subtitle =</span> <span class="st">"NYS 2019-2023"</span>)<span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>), <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))<span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Day of Week"</span>)<span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fatalities"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/data-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot 5: Case Information Crashes by County and reference marker</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot 7: Case Information Weather </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>Weather <span class="ot">&lt;-</span> CaseInfo <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(weather_conditions)<span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(weather_conditions)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Weather)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">"Count"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Weather, <span class="fu">aes</span>(<span class="at">x=</span> weather_conditions, <span class="at">y=</span> Count))<span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)<span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ggtitle</span>(<span class="st">"Pedestrian Fatalities by Weather Conditions"</span>, <span class="at">subtitle =</span> <span class="st">"NYS 2019-2023"</span>)<span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>), <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))<span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Weather Conditions"</span>)<span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Fatalities"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/data-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot 8: Case Information Pedestrian action</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Action <span class="ot">&lt;-</span> CaseInfo <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pedestrian_bicyclist_action)<span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(pedestrian_bicyclist_action)<span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Action)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"Pedestrian Action"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Action)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">"Count"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(Action)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: center;" data-quarto-table-cell-role="th">x</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">y</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">size</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">category</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">value</th>
+<th style="text-align: left;">Pedestrian Action</th>
+<th style="text-align: right;">Count</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">-1.37</td>
-<td style="text-align: center;">12.51</td>
-<td style="text-align: center;">17.21</td>
-<td style="text-align: center;">c</td>
-<td style="text-align: center;">-0.23</td>
+<td style="text-align: left;">Crossing, No Signal or Crosswalk</td>
+<td style="text-align: right;">481</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">-105.22</td>
-<td style="text-align: center;">11.85</td>
-<td style="text-align: center;">16.07</td>
-<td style="text-align: center;">c</td>
-<td style="text-align: center;">0.78</td>
+<td style="text-align: left;">Other Actions in Roadway</td>
+<td style="text-align: right;">179</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">-51.45</td>
-<td style="text-align: center;">40.59</td>
-<td style="text-align: center;">6.32</td>
-<td style="text-align: center;">e</td>
-<td style="text-align: center;">-1.24</td>
+<td style="text-align: left;">Crossing, Against Signal</td>
+<td style="text-align: right;">134</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">-84.65</td>
-<td style="text-align: center;">8.75</td>
-<td style="text-align: center;">11.71</td>
-<td style="text-align: center;">b</td>
-<td style="text-align: center;">1.22</td>
+<td style="text-align: left;">Crossing, With Signal</td>
+<td style="text-align: right;">123</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">-6.60</td>
-<td style="text-align: center;">52.76</td>
-<td style="text-align: center;">7.00</td>
-<td style="text-align: center;">e</td>
-<td style="text-align: center;">0.91</td>
+<td style="text-align: left;">Riding/Walking/Skating Along Highway With Traffic</td>
+<td style="text-align: right;">95</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">-132.05</td>
-<td style="text-align: center;">13.41</td>
-<td style="text-align: center;">6.95</td>
-<td style="text-align: center;">e</td>
-<td style="text-align: center;">-1.62</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: right;">94</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">111.59</td>
-<td style="text-align: center;">-59.47</td>
-<td style="text-align: center;">7.26</td>
-<td style="text-align: center;">d</td>
-<td style="text-align: center;">0.17</td>
+<td style="text-align: left;">Crossing, No Signal, Marked Crosswalk</td>
+<td style="text-align: right;">74</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">53.60</td>
-<td style="text-align: center;">-24.73</td>
-<td style="text-align: center;">16.65</td>
-<td style="text-align: center;">e</td>
-<td style="text-align: center;">-0.61</td>
+<td style="text-align: left;">Not in Roadway (Indicate)</td>
+<td style="text-align: right;">45</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">86.95</td>
-<td style="text-align: center;">12.04</td>
-<td style="text-align: center;">15.97</td>
-<td style="text-align: center;">b</td>
-<td style="text-align: center;">-0.08</td>
+<td style="text-align: left;">Riding/Walking/Skating Along Highway Against Traffic</td>
+<td style="text-align: right;">29</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">78.66</td>
-<td style="text-align: center;">33.48</td>
-<td style="text-align: center;">10.31</td>
-<td style="text-align: center;">d</td>
-<td style="text-align: center;">-0.34</td>
+<td style="text-align: left;">Working in Roadway</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Emerging from in Front of/Behind Parked Vehicle</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Playing in Roadway</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Getting On/Off Vehicle Other than School Bus</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Going to/From Stopped School Bus</td>
+<td style="text-align: right;">1</td>
 </tr>
 </tbody>
 </table>
 </div>
-
-
-<p>Add any additional processing steps here.</p>
-</section>
+</div>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
 <p>Tables and figures (maps and other graphics) are carefully planned to convey the results of your analysis. Intense exploration and evidence of many trials and failures. The author looked at the data in many different ways before coming to the final presentation of the data.</p>
 <p>Show tables, plots, etc. and describe them.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">leaflet</span>(data) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="sc">~</span>x, <span class="sc">~</span>y, <span class="at">radius =</span> <span class="sc">~</span>size,<span class="at">color =</span> <span class="sc">~</span><span class="fu">as.factor</span>(category)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addPopups</span>(<span class="sc">~</span>x[<span class="dv">2</span>], <span class="sc">~</span>y[<span class="dv">2</span>], <span class="st">"Random popup"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>m  <span class="co"># a map with the default OSM tile layer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-c065a003b9a600a20678" style="width:100%;height:325px;"></div>
-<script type="application/json" data-for="htmlwidget-c065a003b9a600a20678">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[12.50984765589237,11.84744789265096,40.59480976313353,8.746550073847175,52.75973467156291,13.407610533759,-59.4688166398555,-24.72966318950057,12.03695017844439,33.48239589482546,-30.93247879296541,-36.73867690376937,58.76663736999035,1.183449290692806,1.997303059324622,-13.13399358652532,40.34539913758636,4.713041698560119,58.48549811169505,-19.03485520742834],[-1.368442419916391,-105.2194292843342,-51.44558588974178,-84.64950179681182,-6.598379602655768,-132.0461713057011,111.5872146841139,53.60437438823283,86.95255198515952,78.66194785572588,-35.66051292233169,116.1425047181547,-39.68498029746115,28.63065113313496,162.1150168776512,-153.6717260722071,133.1062967330217,35.51320608705282,-153.90216386877,77.57422652095556],[17.210897593759,16.06606261688285,6.317071652738377,11.70894049224444,6.999204368330538,6.94921973044984,7.26099893799983,16.6476460499689,15.97011784208007,10.30643927748315,19.00458339951001,5.926447531674057,5.084647865733132,8.689596506301314,16.99668419314548,13.05702987709083,15.3243517386727,7.485436353599653,5.276546768145636,14.68978682998568],null,null,{"interactive":true,"className":"","stroke":true,"color":["c","c","e","b","e","e","d","e","b","d","c","e","d","d","c","b","d","a","c","e"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["c","c","e","b","e","e","d","e","b","d","c","e","d","d","c","b","d","a","c","e"],"fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPopups","args":[11.84744789265096,-105.2194292843342,"Random popup",null,null,{"maxWidth":300,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]}],"limits":{"lat":[-59.4688166398555,58.76663736999035],"lng":[-153.90216386877,162.1150168776512]}},"evals":[],"jsHooks":[]}</script>
-<p>Map of completely random data</p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>y,<span class="at">col=</span>category))<span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="dygraphs-example" class="level3">
-<h3 class="anchored" data-anchor-id="dygraphs-example">Dygraphs Example</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dygraphs)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dygraph</span>(nhtemp, <span class="at">main =</span> <span class="st">"New Haven Temperatures"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dyRangeSelector</span>(<span class="at">dateWindow =</span> <span class="fu">c</span>(<span class="st">"1920-01-01"</span>, <span class="st">"1960-01-01"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="dygraphs html-widget html-fill-item" id="htmlwidget-f5c6bac61f7129ee78b7" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-f5c6bac61f7129ee78b7">{"x":{"attrs":{"title":"New Haven Temperatures","labels":["year","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}},"showRangeSelector":true,"dateWindow":["1920-01-01T00:00:00.000Z","1960-01-01T00:00:00.000Z"],"rangeSelectorHeight":40,"rangeSelectorPlotFillColor":" #A7B1C4","rangeSelectorPlotStrokeColor":"#808FAB","interactionModel":"Dygraph.Interaction.defaultModel"},"scale":"yearly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1912-01-01T00:00:00.000Z","1913-01-01T00:00:00.000Z","1914-01-01T00:00:00.000Z","1915-01-01T00:00:00.000Z","1916-01-01T00:00:00.000Z","1917-01-01T00:00:00.000Z","1918-01-01T00:00:00.000Z","1919-01-01T00:00:00.000Z","1920-01-01T00:00:00.000Z","1921-01-01T00:00:00.000Z","1922-01-01T00:00:00.000Z","1923-01-01T00:00:00.000Z","1924-01-01T00:00:00.000Z","1925-01-01T00:00:00.000Z","1926-01-01T00:00:00.000Z","1927-01-01T00:00:00.000Z","1928-01-01T00:00:00.000Z","1929-01-01T00:00:00.000Z","1930-01-01T00:00:00.000Z","1931-01-01T00:00:00.000Z","1932-01-01T00:00:00.000Z","1933-01-01T00:00:00.000Z","1934-01-01T00:00:00.000Z","1935-01-01T00:00:00.000Z","1936-01-01T00:00:00.000Z","1937-01-01T00:00:00.000Z","1938-01-01T00:00:00.000Z","1939-01-01T00:00:00.000Z","1940-01-01T00:00:00.000Z","1941-01-01T00:00:00.000Z","1942-01-01T00:00:00.000Z","1943-01-01T00:00:00.000Z","1944-01-01T00:00:00.000Z","1945-01-01T00:00:00.000Z","1946-01-01T00:00:00.000Z","1947-01-01T00:00:00.000Z","1948-01-01T00:00:00.000Z","1949-01-01T00:00:00.000Z","1950-01-01T00:00:00.000Z","1951-01-01T00:00:00.000Z","1952-01-01T00:00:00.000Z","1953-01-01T00:00:00.000Z","1954-01-01T00:00:00.000Z","1955-01-01T00:00:00.000Z","1956-01-01T00:00:00.000Z","1957-01-01T00:00:00.000Z","1958-01-01T00:00:00.000Z","1959-01-01T00:00:00.000Z","1960-01-01T00:00:00.000Z","1961-01-01T00:00:00.000Z","1962-01-01T00:00:00.000Z","1963-01-01T00:00:00.000Z","1964-01-01T00:00:00.000Z","1965-01-01T00:00:00.000Z","1966-01-01T00:00:00.000Z","1967-01-01T00:00:00.000Z","1968-01-01T00:00:00.000Z","1969-01-01T00:00:00.000Z","1970-01-01T00:00:00.000Z","1971-01-01T00:00:00.000Z"],[49.9,52.3,49.4,51.1,49.4,47.9,49.8,50.9,49.3,51.9,50.8,49.6,49.3,50.6,48.4,50.7,50.9,50.6,51.5,52.8,51.8,51.1,49.8,50.2,50.4,51.6,51.8,50.9,48.8,51.7,51,50.6,51.7,51.5,52.1,51.3,51,54,51.4,52.7,53.1,54.6,52,52,50.9,52.6,50.2,52.6,51.6,51.9,50.5,50.9,51.7,51.4,51.7,50.8,51.9,51.8,51.9,53]]},"evals":["attrs.interactionModel"],"jsHooks":[]}</script>
-</div>
-</div>
-</section>
 </section>
 <section id="conclusions" class="level1">
 <h1>Conclusions</h1>
