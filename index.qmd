@@ -6,7 +6,7 @@ date: 11/15
 ---
 
 # Introduction
-Pedestrian safety across the U.S. has declined significantly over the past several decades. According to the U.S. Department of Transportation, 7,388 pedestrians were killed in motor vehicle crashes in 2021 which represents a 12.5 percent increase from 2020 and a 40 year high (U.S. DOT, 2023).
+Pedestrian safety across the U.S. has declined significantly over the past several decades. According to the U.S. Department of Transportation, 7,388 pedestrians were killed in motor vehicle crashes in 2021 which represents a 12.5 percent increase from 2020 and a 40 year high (U.S. DOT, 2023). 
 
 # Research Questions
 1.  Are national trends in fatal accidents involving pedestrians and cyclists present at the state level?
