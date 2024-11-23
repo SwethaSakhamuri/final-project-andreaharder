@@ -11,7 +11,7 @@ Pedestrian safety across the U.S. has declined significantly over the past sever
 # Research Questions
 1.  Are national trends in fatal accidents involving pedestrians and cyclists present at the state level?
 2.  What is the geospatial distribution of crashes involving pedestrians and bicyclists across NYS by county?
-3.  What are the most common causes of pedestrian and cyclist fatalities in NYS?
+3.  What are the most common causes of pedestrian and cyclist fatalities in NYS? 
 
 # Materials and methods
 Narrative: Clear narrative description of the data sources and methods. Includes data from at least two sources that were integrated / merged in R.
