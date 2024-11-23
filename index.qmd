@@ -2,7 +2,7 @@
 title: "Pedestrian Fatalities in NYS"
 author: Andrea Harder
 subtitle: 2019-2023
-date: 11/15 
+date: 11/15  
 ---
 
 # Introduction
@@ -31,7 +31,6 @@ You can do numbers like this:
 3.  The third most important thing
 
 # Download and clean all required data
-
 ```{r data, echo=TRUE, message = FALSE, eval = TRUE}
 library(tidyverse)
 library(dplyr)
@@ -138,15 +137,12 @@ kable(Action)
 ```
 
 # Results
-
 Tables and figures (maps and other graphics) are carefully planned to convey the results of your analysis. Intense exploration and evidence of many trials and failures. The author looked at the data in many different ways before coming to the final presentation of the data.
 
 Show tables, plots, etc. and describe them.
 
 # Conclusions
-
 Clear summary adequately describing the results and putting them in context. Discussion of further questions and ways to continue investigation.
 
 # References
-
 All sources are cited in a consistent manner
