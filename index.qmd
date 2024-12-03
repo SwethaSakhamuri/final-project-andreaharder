@@ -10,7 +10,7 @@ date: 11/15
 ---
 
 # Introduction
-Pedestrian safety across the U.S. has declined significantly over the past several decades. According to the U.S. Department of Transportation, 7,388 pedestrians were killed in motor vehicle crashes in 2021, which represents a 12.5 percent increase from 2020 and a 40-year high (U.S. DOT, 2023). New York State (NYS) is home to roughly 20 million people, and it is estimated that approximately 300 pedestrians die in motor vehicle crashes per year.  The state is committed to creating safe streets for all users regardless of their mode of preference and socio-economic status. In 2016 NYS launched a 5-year pedestrian safety campaign that would allocate up to $110 million to engineering, enforcement, and education-related pedestrian safety projects. Trends and common characteristics of pedestrian fatalities over the past several years can be explored to better understand how effective the pedestrian safety campaign has been and what the most viable strategies are for improving pedestrian safety moving forward. 
+Pedestrian safety across the U.S. has declined significantly over the past several decades. According to the U.S. Department of Transportation, 7,388 pedestrians were killed in motor vehicle crashes in 2021, which represents a 12.5 percent increase from 2020 and a 40-year high (U.S. DOT, 2023). New York State (NYS) is home to roughly 20 million people, and it is estimated that approximately 300 pedestrians die in motor vehicle crashes per year.  The state is committed to creating safe streets for all users regardless of their mode of preference and socio-economic status. In 2016 NYS launched a 5-year pedestrian safety campaign that would allocate up to $110 million to engineering, enforcement, and education-related pedestrian safety projects. This research will explore trends, common characteristics, and the geospatial distribution of fatal accidents involving pedestrians from 2019 to 2023 to understand how effective the pedestrian safety campaign has been and what the most viable strategies are for improving pedestrian safety moving forward.  
 
 # Research Questions
 1.  Are national trends in fatal accidents involving pedestrians present at the state level?
@@ -46,7 +46,7 @@ The datasets and shapefiles can be accessed using the following hyperlinks:
 [Reference Marker Locations](https://www.arcgis.com/home/item.html?id=79f2020d56754e48929312a0f0fa9654)
 
 # Load required packages, datasets, and shapefiles 
-```{r, message = F, warning = F}
+```{r, message = FALSE, warning = FALSE}
 if(!requireNamespace("tidyverse", quietly = TRUE)){
   install.packages("tidyverse")
 }
@@ -277,15 +277,10 @@ leaflet(Transform2)%>%
 ```
 
 # Conclusions
-~200 words
+It is difficult to come to any concrete conclusions given the limitations of this research and the datasets that were explored. Variables such as age, day of the week, and poor weather conditions do not seem to play a major role in contributing to fatal crashes involving pedestrians. However, the analysis of pedestrian actions from 2019 to 2023 suggests that crashes are most common when pedestrians are crossing where there is no signal or crosswalk. Signals and crosswalks could be installed at a relatively low cost to improve pedestrian safety, especially in counties across NYS that feature more accidents per 100,000 people, such as Suffolk, Nassau, Albany, Monroe, and Onondaga County. 
 
-Clear summary adequately describing the results and putting them in context. Discussion of further questions and ways to continue investigation.
+The NYSDOT could also consider making longitudinal data available to the public so that trends can be more easily explored before 2019. Additional information could similarly be provided to improve our understanding of the common causes and geospatial distribution of crashes. For instance, research has shown that "Black and Hispanic Americans have higher traffic fatality rates per mile traveled than White Americans" (Raifman, 2022, p. 160). The DMV should consider releasing information relating to the race and ethnicity of the victim to better understand the disproportionate impacts of pedestrian fatalities and how mobility justice can be advanced moving forward. Location information that is not connected to a NYS reference marker would also be helpful, as many accidents do not occur on NYS-owned and operated roads. Until more data is made available, continued investigation with these datasets could analyze gender, time of day, month of the year, lighting conditions, and the geospatial distribution of pedestrian fatalities within counties and at the municipal level. 
 
-It is difficult to come to any concrete conclusions given the nature of the data. Absence of publicly available longitudinal data dating before 2019. Such data would be useful for determing long term trends. 
-
-Research has shown that "Black and Hispanic Americans have higher traffic fatality rates per mile traveled than White Americans" (Raifman, 2022, p. 160). The DMV should consider releasing information relating to the race and ethnicity of the victim. This information can be useful in advancing mobility justice and equitable strategies moving forward. 
-Continued investigation could gender, time of day, month of the year, lighting conditions, 
-analysis at a municipal level. consideration of income and other factors 
 
 
 # References
